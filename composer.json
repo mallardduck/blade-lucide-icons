@@ -1,6 +1,6 @@
 {
     "name": "mallardduck/blade-lucide-icons",
-    "description": "A package to easily make use of LucideIcons in your Laravel Blade views.",
+    "description": "A package to easily make use of Lucide icons in your Laravel Blade views.",
     "keywords": ["Blade", "LucideIcons", "Laravel"],
     "homepage": "https://github.com/mallardduck/blade-lucide-icons",
     "license": "MIT",

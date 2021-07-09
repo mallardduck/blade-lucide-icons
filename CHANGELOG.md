@@ -7,5 +7,5 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 
 ## 1.0.0 (20??-??-??)
-
-Initial release.
+### Initial release
+- Based on [lucide-icons/lucide](https://github.com/lucide-icons/lucide/tree/v0.15.26) v0.15.26
