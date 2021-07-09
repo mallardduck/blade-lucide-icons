@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BladeUI\LucideIcons\BladeLucideIconsServiceProvider;
+use MallardDuck\LucideIcons\BladeLucideIconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Orchestra\Testbench\TestCase;
 

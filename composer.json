@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BladeUI\\LucideIcons\\": "src"
+            "MallardDuck\\LucideIcons\\": "src"
         }
     },
     "autoload-dev": {
@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BladeUI\\LucideIcons\\BladeLucideIconsServiceProvider"
+                "MallardDuck\\LucideIcons\\BladeLucideIconsServiceProvider"
             ]
         }
     },

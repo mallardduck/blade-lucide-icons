@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BladeUI\LucideIcons;
+namespace MallardDuck\LucideIcons;
 
 use BladeUI\Icons\Factory;
 use Illuminate\Contracts\Container\Container;
@@ -17,7 +17,7 @@ final class BladeLucideIconsServiceProvider extends ServiceProvider
         $this->callAfterResolving(Factory::class, function (Factory $factory, Container $container) {
             $config = $container->make('config')->get('blade-lucide-icons', []);
 
-            $factory->add('heroicons', array_merge(['path' => __DIR__.'/../resources/svg'], $config));
+            $factory->add('lucide', array_merge(['path' => __DIR__.'/../resources/svg'], $config));
         });
     }
 
