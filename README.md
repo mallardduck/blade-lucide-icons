@@ -1,7 +1,7 @@
 # Blade Lucide Icons
 
 <a href="https://github.com/mallardduck/blade-lucide-icons/actions?query=workflow%3ATests">
-    <img src="https://github.com/blade-ui-kit/blade-lucide-icons/workflows/Tests/badge.svg" alt="Tests">
+    <img src="https://github.com/mallardduck/blade-lucide-icons/workflows/Tests/badge.svg" alt="Tests">
 </a>
 <a href="https://packagist.org/packages/mallardduck/blade-lucide-icons">
     <img src="https://img.shields.io/packagist/v/mallardduck/blade-lucide-icons" alt="Latest Stable Version">
