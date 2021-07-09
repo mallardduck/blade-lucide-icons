@@ -1,12 +1,12 @@
 {
-    "name": "blade-organization/blade-heroicons",
-    "description": "A package to easily make use of Heroicons in your Laravel Blade views.",
-    "keywords": ["Blade", "Heroicons", "Laravel"],
-    "homepage": "https://github.com/blade-organization/blade-heroicons",
+    "name": "mallardduck/blade-lucide-icons",
+    "description": "A package to easily make use of LucideIcons in your Laravel Blade views.",
+    "keywords": ["Blade", "LucideIcons", "Laravel"],
+    "homepage": "https://github.com/mallardduck/blade-lucide-icons",
     "license": "MIT",
     "authors": [
         {
-            "name": "Blade Developer"
+            "name": "Dan Pock"
         }
     ],
     "require": {
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BladeUI\\Heroicons\\": "src"
+            "BladeUI\\LucideIcons\\": "src"
         }
     },
     "autoload-dev": {
@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BladeUI\\Heroicons\\BladeHeroiconsServiceProvider"
+                "BladeUI\\LucideIcons\\BladeLucideIconsServiceProvider"
             ]
         }
     },
