@@ -46,25 +46,25 @@ php artisan vendor:publish --tag=blade-lucide-icons-config
 Icons can be used as self-closing Blade components which will be compiled to SVG icons:
 
 ```blade
-<x-heroicon-o-adjustments/>
+<x-lucide-activity />
 ```
 
 You can also pass classes to your icon components:
 
 ```blade
-<x-heroicon-o-adjustments class="w-6 h-6 text-gray-500"/>
+<x-lucide-album class="w-6 h-6 text-gray-500"/>
 ```
 
 And even use inline styles:
 
 ```blade
-<x-heroicon-o-adjustments style="color: #555"/>
+<x-lucide-anchor style="color: #555"/>
 ```
 
 The solid icons can be referenced like this:
 
 ```blade
-<x-heroicon-s-adjustments/>
+<x-lucide-bike />
 ```
 
 ### Raw SVG Icons
@@ -78,7 +78,7 @@ php artisan vendor:publish --tag=blade-lucide-icons --force
 Then use them in your views like:
 
 ```blade
-<img src="{{ asset('vendor/blade-lucide-icons/o-adjustments.svg') }}" width="10" height="10"/>
+<img src="{{ asset('vendor/blade-lucide-icons/cloud-moon.svg') }}" width="10" height="10"/>
 ```
 
 ## Changelog
