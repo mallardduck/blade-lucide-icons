@@ -15,6 +15,7 @@
         "illuminate/support": "^8.0"
     },
     "require-dev": {
+        "ext-dom": "*",
         "orchestra/testbench": "^6.0",
         "phpunit/phpunit": "^9.0"
     },
