@@ -5,6 +5,13 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.0...main)
 
+## 1.0.3 (2021-07-28)
+### Added
+- New Mountain and Mountain-Snow icons
+
+### Updates
+- Sync with [v0.15.28](https://github.com/lucide-icons/lucide/tree/v0.15.28)
+
 ## 1.0.2 (2021-07-26)
 ### Updates
 - Sync with [v0.15.27](https://github.com/lucide-icons/lucide/tree/v0.15.27)
