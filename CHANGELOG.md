@@ -3,7 +3,15 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.0...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
+
+## 1.0.4 (2021-08-09)
+### Added
+- Rocking chair icon
+
+### Updates
+- Modified archive icon
+
 
 ## 1.0.3 (2021-07-28)
 ### Added
