@@ -5,6 +5,17 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
 
+## 1.1.0 (2021-08-31)
+### Updates
+- Syncs up with lucide v0.15.31
+
+### Fixes
+- Usage of semver within this package moving forward (specifically based on icon chnages).
+
+### Added
+- Graduation Cap icon
+- Megaphone icon
+
 ## 1.0.4 (2021-08-09)
 ### Added
 - Rocking chair icon
