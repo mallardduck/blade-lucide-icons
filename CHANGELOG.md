@@ -5,6 +5,19 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
 
+## 1.2.0 (2021-09-27)
+### Updates
+- Syncs up with lucide v0.16.3
+- Updates to fix `twitter` & `battery-zap` icons
+
+### Added
+- New `timer-reset` icon
+- New `flag-triangle-left` & `flag-triangle-right` icons
+- New `quote` icon
+- New `landmark` icon
+- New `alarm-clock-off` icon
+
+
 ## 1.1.0 (2021-08-31)
 ### Updates
 - Syncs up with lucide v0.15.31
