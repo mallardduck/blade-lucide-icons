@@ -5,6 +5,39 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
 
+## 1.3.0 (2021-10-23)
+### Updates
+- Syncs up to lucide v0.16.14
+- Updates to the following Icons:
+  - `archive`
+  - `bookmark-minus`
+  - `bookmark-plus`
+  - `sort-asc`
+  - `sort-desc`
+  - `flag-triangle-left`
+  - `flag-triangle-right`
+  - `graduation-cap`
+  - `import`
+  - `mountain`
+  - `mountain-snow`
+  - `timer-reset`
+
+### Added
+- New icons:
+  - `bookmark`
+  - `graduation-cap`
+  - `list-minus`
+  - `list-plus`
+  - `list-x`
+  - `tags`
+  - `verified`
+  - `piggy-bank`
+  - `gem`
+  - `chevron-first`
+  - `chevron-last`
+  - `settings-2`
+  - `wand`
+
 ## 1.2.0 (2021-09-27)
 ### Updates
 - Syncs up with lucide v0.16.3
