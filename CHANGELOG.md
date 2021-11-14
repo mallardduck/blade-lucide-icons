@@ -3,7 +3,7 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.4.0...main)
 
 ## 1.4.0 (2021-11-14)
 ### Updates
