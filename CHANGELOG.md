@@ -5,6 +5,14 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.0.4...main)
 
+## 1.4.0 (2021-11-14)
+### Updates
+- Synces up to lucide `v0.16.15`
+- Updates `chevron-first` and `chevron-last`
+
+### Added
+- New `folder-open` icon
+
 ## 1.3.0 (2021-10-23)
 ### Updates
 - Syncs up to lucide v0.16.14
