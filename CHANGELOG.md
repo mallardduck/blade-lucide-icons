@@ -3,7 +3,21 @@
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.4.0...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.4.1...main)
+
+## 1.4.1 (2021-12-04)
+### Updates
+- Synces up to lucide `v0.16.19`
+- Changes to:
+  - Alarm Clock
+  - List Plus
+  - Piggy Bank
+
+### Added
+- Icons for:
+  - japanese yen
+  - timer off
+  - wrap text
 
 ## 1.4.0 (2021-11-14)
 ### Updates
