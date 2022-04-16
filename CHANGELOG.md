@@ -2,10 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.6.0...main)
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.4.1...main)
+## 1.6.0
 ### Updates
-- Synces up to lucide `v0.30.0`
+- Syncs up to lucide `v0.30.0`
 
 ### Added
 - Various dice icons
