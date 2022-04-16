@@ -4,6 +4,18 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.4.1...main)
+### Updates
+- Synces up to lucide `v0.30.0`
+
+### Added
+- Various dice icons
+- locate-off icon
+- waves icon
+- Lots more
+
+### Changed
+- Corrected typo on "horizonal" align icons.
+- Many icon updates and fixes to upstream lucide
 
 ## 1.5.0 (2022-03-05)
 ### Added
