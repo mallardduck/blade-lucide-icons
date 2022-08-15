@@ -19,6 +19,7 @@
     },
     "require-dev": {
         "ext-dom": "*",
+        "ext-fileinfo": "*",
         "orchestra/testbench": "^6.0 || ^7.0",
         "phpunit/phpunit": "^9.0",
         "spatie/phpunit-snapshot-assertions": "^4.2.14"
