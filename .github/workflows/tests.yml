@@ -39,7 +39,7 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, fileinfo
           coverage: none
 
-      - name: Install dependencies
+      - name: "Lock Laravel contracts to ${{ matrix.laravel }}"
         run: |
           composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update
 
