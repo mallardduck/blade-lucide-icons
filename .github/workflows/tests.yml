@@ -8,17 +8,27 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: true
       matrix:
         php: [7.4, 8.0]
-        laravel: [^8.0]
-
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }}
+        laravel: [^8.0, ^9.0]
+        operating-system:
+          - "macos-latest"
+          - "ubuntu-latest"
+          - "windows-latest"
 
     steps:
+      - name: "Configure Git (for Windows)"
+        if: ${{ matrix.operating-system == 'windows-latest' }}
+        shell: "bash"
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
+
       - name: Checkout code
         uses: actions/checkout@v2
 
