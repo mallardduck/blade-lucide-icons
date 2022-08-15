@@ -41,8 +41,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "illuminate/contracts:${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
-          composer update --prefer-dist --no-interaction --no-progress
+          composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update
+
+      - name: "Install dependencies (Composer)"
+        uses: "ramsey/composer-install@v2"
+        with:
+          dependency-versions: "highest"
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose
