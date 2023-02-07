@@ -4,6 +4,14 @@ This changelog follows [the Keep a Changelog standard](https://keepachangelog.co
 
 ## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.6.0...main)
 
+## 1.11.0 - (2022-09-27)
+### Added
+- Update lucide to v0.112.0
+
+## 1.10.0 - (2022-09-27)
+### Added
+- Update lucide to v0.90.0
+
 ## 1.9.0 - (2022-08-15)
 ### Added
 - Support for Laravel 9
