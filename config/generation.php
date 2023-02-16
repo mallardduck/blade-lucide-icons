@@ -1,6 +1,12 @@
 <?php
 
-$svgNormalization = static function (string $tempFilepath, array $iconSet) {
+use BladeUI\Icons\Generation\IconSetConfig;
+
+$svgNormalization = static function (
+    string $tempFilepath,
+    IconSetConfig $iconSet,
+    SplFileInfo $file
+) : void {
     $doc = new DOMDocument();
     $doc->load($tempFilepath);
     $svgElement = $doc->getElementsByTagName('svg')[0];
@@ -17,10 +23,10 @@ $svgNormalization = static function (string $tempFilepath, array $iconSet) {
 };
 
 return [
-    [
-        'source' => __DIR__.'/../lucide/icons',
-        'destination' => __DIR__.'/../resources/svg',
-        'after' => $svgNormalization,
-        'safe' => true,
-    ],
+    IconSetConfig::build(
+        source: __DIR__.'/../lucide/icons',
+        destination: __DIR__.'/../resources/svg',
+        safe: true,
+        after: $svgNormalization,
+    ),
 ];
