@@ -1,0 +1,73 @@
+name: Update Icons
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  check_versions:
+    runs-on: ubuntu-latest
+    outputs:
+      latest: ${{ steps.latest-version.outputs.LATEST_VERSION }}
+      up_to_date: ${{ steps.current-version.outputs.CURRENT_VERSION == steps.latest-version.outputs.LATEST_VERSION }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          submodules: recursive
+
+      - name: Set current version
+        id: current-version
+        run: echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_OUTPUT"
+
+      - name: Set latest version
+        id: latest-version
+        run: echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+  update_icons:
+    needs:
+      - check_versions
+    runs-on: ubuntu-latest
+    if: ${{ needs.check_versions.outputs.up_to_date == 'false' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+          submodules: recursive
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "illuminate/contracts=^${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
+          composer update --prefer-dist --no-interaction --no-progress
+
+      - name: Update Submodule
+        run: |
+          cd lucide
+          git fetch
+          git checkout ${{ needs.check_versions.outputs.latest }}
+
+      - name: Run Generator
+        run: php vendor/bin/blade-icons-generate
+
+      - name: Update Snapshots
+        run: vendor/bin/phpunit -d --update-snapshots
+
+      - name: Run Tests
+        run: vendor/bin/phpunit
+
+      - name: Commit Changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "feat(icons): Update Lucide to ${{ needs.check_versions.outputs.latest }}"
