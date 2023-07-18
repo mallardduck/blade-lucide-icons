@@ -15,16 +15,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
+          fetch-depth: 0
           token: ${{ secrets.PAT }}
           submodules: recursive
 
       - name: Set current version
         id: current-version
-        run: echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_OUTPUT"
+          echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_STEP_SUMMARY"
+
 
       - name: Set latest version
         id: latest-version
-        run: echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
+          echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_STEP_SUMMARY"
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
   update_icons:
@@ -49,7 +55,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "illuminate/contracts=^${{ matrix.laravel }}" --prefer-dist --no-interaction --no-update
+          composer require "illuminate/contracts=^10.0 --prefer-dist --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Update Submodule
