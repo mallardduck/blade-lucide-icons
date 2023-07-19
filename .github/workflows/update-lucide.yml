@@ -76,4 +76,4 @@ jobs:
       - name: Commit Changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: "feat(icons): Update Lucide to ${{ needs.check_versions.outputs.latest }}"
+          message: "feat(icons): Update Lucide to https://github.com/lucide-icons/lucide/releases/tag/${{ needs.check_versions.outputs.latest }}"
