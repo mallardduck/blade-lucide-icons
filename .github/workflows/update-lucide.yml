@@ -55,7 +55,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "illuminate/contracts=^10.0 --prefer-dist --no-interaction --no-update
+          composer require illuminate/contracts "^10.0" --prefer-dist --no-interaction --no-update
           composer update --prefer-dist --no-interaction --no-progress
 
       - name: Update Submodule
