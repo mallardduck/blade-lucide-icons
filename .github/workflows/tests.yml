@@ -58,7 +58,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [8.0]
-        laravel: [^8.53, ^9.0]
+        laravel: [^8.53, ^9.32]
         operating-system:
           - "macos-latest"
           - "ubuntu-latest"
