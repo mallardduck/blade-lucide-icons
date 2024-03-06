@@ -129,6 +129,7 @@
       <path value="$PROJECT_DIR$/vendor/orchestra/workbench" />
       <path value="$PROJECT_DIR$/vendor/orchestra/canvas-core" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/uri-template" />
+      <path value="$PROJECT_DIR$/vendor/laravel/prompts" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
