@@ -2,7 +2,11 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.19.0...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.20.0...main)
+
+## 1.20.0 - (2024-03-21)
+### Updates
+- Update lucide to `v0.365.0`
 
 ## 1.19.0 - (2024-03-21)
 ### Updates
