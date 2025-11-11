@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+permissions:
+  contents: write
+
 jobs:
   check_versions:
     runs-on: ubuntu-latest
@@ -16,26 +19,38 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.PAT }}
           submodules: recursive
 
       - name: Set current version
         id: current-version
+        shell: bash
         run: |
-          echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_OUTPUT"
-          echo "CURRENT_VERSION=$(cd lucide && git describe --tags)" >> "$GITHUB_STEP_SUMMARY"
-
+          cd lucide
+          git fetch --tags --force --quiet
+          CURR_TAG="$(git describe --tags --abbrev=0)"
+          echo "CURRENT_VERSION=${CURR_TAG}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Current Lucide submodule"
+            echo ""
+            echo "- Tag: \`${CURR_TAG}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Set latest version
         id: latest-version
-        run: |
-          echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
-          echo "LATEST_VERSION=$(gh api repos/lucide-icons/lucide/releases/latest |  jq -r '.tag_name')" >> "$GITHUB_STEP_SUMMARY"
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          LATEST_TAG="$(gh release view -R lucide-icons/lucide --json tagName -q .tagName)"
+          echo "LATEST_VERSION=${LATEST_TAG}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Upstream latest release"
+            echo ""
+            echo "- Tag: \`${LATEST_TAG}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
   update_icons:
-    needs:
-      - check_versions
+    needs: [check_versions]
     runs-on: ubuntu-latest
     if: ${{ needs.check_versions.outputs.up_to_date == 'false' }}
 
@@ -43,30 +58,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT }}
+          fetch-depth: 0
           submodules: recursive
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: '8.3'
           extensions: dom, curl, libxml, mbstring, zip
           coverage: none
+          tools: composer
 
       - name: Install dependencies
-        run: |
-          composer update --prefer-dist --no-interaction --no-progress
+        shell: bash
+        run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Update Submodule
+      - name: Update submodule to latest tag
+        shell: bash
         run: |
           cd lucide
-          git fetch --all --tags
-          git checkout ${{ needs.check_versions.outputs.latest }}
+          git fetch --all --tags --force --quiet
+          git checkout "${{ needs.check_versions.outputs.latest }}"
+          cd ..
+          # Stage the submodule pointer update
+          git add lucide
 
-      - name: Run Generator
+      - name: Run generator
+        shell: bash
         run: php vendor/bin/blade-icons-generate
 
-      - name: Commit Changes
+      - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: "feat(icons): Update Lucide to https://github.com/lucide-icons/lucide/releases/tag/${{ needs.check_versions.outputs.latest }}"
+          add: .
+          message: "feat(icons): Update Lucide to ${{ needs.check_versions.outputs.latest }}"
+          push: true
