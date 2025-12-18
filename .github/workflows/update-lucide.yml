@@ -87,9 +87,109 @@ jobs:
         shell: bash
         run: php vendor/bin/blade-icons-generate
 
+      - name: Detect icon changes
+        id: detect-changes
+        shell: bash
+        run: |
+          # Stage generated files to include them in git diff
+          git add resources/svg/
+
+          # Run detection script
+          CHANGES_JSON=$(php bin/detect-icon-changes.php)
+
+          # Use multiline output for JSON
+          {
+            echo "changes<<EOF"
+            echo "${CHANGES_JSON}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          # Extract bump type
+          BUMP_TYPE=$(echo "${CHANGES_JSON}" | jq -r '.bump_type')
+          echo "bump_type=${BUMP_TYPE}" >> "$GITHUB_OUTPUT"
+
+          # Add summary to GitHub Actions
+          echo "### Icon Changes Detected" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`\`\`json" >> "$GITHUB_STEP_SUMMARY"
+          echo "${CHANGES_JSON}" | jq '.' >> "$GITHUB_STEP_SUMMARY"
+          echo "\`\`\`" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Bump version and update CHANGELOG
+        id: bump-version
+        if: steps.detect-changes.outputs.bump_type != 'none'
+        shell: bash
+        run: |
+          # Extract Lucide version (remove 'v' prefix if present)
+          LUCIDE_VERSION="${{ needs.check_versions.outputs.latest }}"
+          LUCIDE_VERSION="${LUCIDE_VERSION#v}"
+
+          # Run version bump script
+          NEW_VERSION=$(php bin/bump-version.php \
+            "${{ steps.detect-changes.outputs.bump_type }}" \
+            "${LUCIDE_VERSION}" \
+            '${{ steps.detect-changes.outputs.changes }}')
+
+          echo "new_version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
+          echo "### Version Bump" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Type: \`${{ steps.detect-changes.outputs.bump_type }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- New version: \`${NEW_VERSION}\`" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Commit changes
+        if: steps.detect-changes.outputs.bump_type != 'none'
         uses: EndBug/add-and-commit@v9
         with:
           add: .
           message: "feat(icons): Update Lucide to ${{ needs.check_versions.outputs.latest }}"
           push: true
+          tag: ${{ steps.bump-version.outputs.new_version }}
+          tag_push: '--force'
+
+      - name: Create GitHub Release
+        if: steps.detect-changes.outputs.bump_type != 'none' && github.ref == 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          # Extract release notes from CHANGELOG
+          LUCIDE_VERSION="${{ needs.check_versions.outputs.latest }}"
+          LUCIDE_VERSION="${LUCIDE_VERSION#v}"
+          NEW_VERSION="${{ steps.bump-version.outputs.new_version }}"
+
+          # Create release notes
+          cat > release_notes.md <<EOF
+          Updated Lucide icons to version ${LUCIDE_VERSION}.
+
+          ## Changes
+          EOF
+
+          # Parse changes from JSON
+          CHANGES='${{ steps.detect-changes.outputs.changes }}'
+          ADDED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.added_count')
+          REMOVED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.removed_count')
+          MODIFIED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.modified_count')
+
+          if [ "${REMOVED_COUNT}" -gt 0 ]; then
+            echo "" >> release_notes.md
+            echo "### ⚠️ Breaking Changes" >> release_notes.md
+            echo "- ${REMOVED_COUNT} icon(s) removed" >> release_notes.md
+          fi
+
+          if [ "${ADDED_COUNT}" -gt 0 ]; then
+            echo "" >> release_notes.md
+            echo "### ✨ New Icons" >> release_notes.md
+            echo "- ${ADDED_COUNT} new icon(s) added" >> release_notes.md
+          fi
+
+          if [ "${MODIFIED_COUNT}" -gt 0 ]; then
+            echo "" >> release_notes.md
+            echo "### 🔄 Modified Icons" >> release_notes.md
+            echo "- ${MODIFIED_COUNT} icon(s) updated" >> release_notes.md
+          fi
+
+          # Create the release
+          gh release create "${NEW_VERSION}" \
+            --title "v${NEW_VERSION}" \
+            --notes-file release_notes.md \
+            --latest
