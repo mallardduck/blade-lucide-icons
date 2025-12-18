@@ -2,7 +2,21 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.25.2...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.0...main)
+
+## 1.26.0 - (2025-12-18)
+### Added
+- Support for Laravel 12
+
+### Updates
+- Updated minimum PHP requirement to `^8.1`
+- Updated `blade-ui-kit/blade-icons` to `^1.8`
+- Updated dev dependencies to support PHPUnit 9-11
+- Added `orchestra/testbench` `^10.0` for Laravel 12 support
+- Updated `spatie/phpunit-snapshot-assertions` to `^4.2.14|^5.0`
+
+### Remove
+- Drops support for PHP 8.0
 
 ## 1.25.2 - (2025-12-18)
 ### Added
