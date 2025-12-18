@@ -20,7 +20,7 @@ If you currently live in Russia, please read [this message](./ToRussianPeople.md
 
 ## Requirements
 
-- PHP 7.4 or higher
+- PHP 8.1 or higher
 - Laravel 8.0 or higher
 
 ## Installation
