@@ -7,32 +7,21 @@ on:
     - cron: '0 0 */10 * *'
 
 jobs:
-  tests:
-    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.operating-system }}
-    runs-on: ${{ matrix.operating-system }}
+  tests-linux:
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Linux
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: true
       matrix:
         php: [8.2, 8.3, 8.4, 8.5]
         laravel: [11.*, 12.*]
-        operating-system:
-          - "macos-latest"
-          - "ubuntu-latest"
-          - "windows-latest"
         exclude:
           # Laravel 11 does not officially support PHP 8.5
           - laravel: 11.*
             php: 8.5
 
     steps:
-      - name: "Configure Git (for Windows)"
-        if: ${{ matrix.operating-system == 'windows-latest' }}
-        shell: "bash"
-        run: |
-          git config --system core.autocrlf false
-          git config --system core.eol lf
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -53,4 +42,46 @@ jobs:
           dependency-versions: "highest"
 
       - name: Execute tests
-        run: vendor/bin/phpunit --verbose
+        run: vendor/bin/phpunit --testdox --display-skipped --display-incomplete --display-warnings
+
+  tests-other-os:
+    name: PHP 8.4 - Laravel ${{ matrix.laravel }} - ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      fail-fast: true
+      matrix:
+        laravel: [11.*, 12.*]
+        operating-system:
+          - "macos-latest"
+          - "windows-latest"
+
+    steps:
+      - name: "Configure Git (for Windows)"
+        if: ${{ matrix.operating-system == 'windows-latest' }}
+        shell: "bash"
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.4
+          extensions: dom, curl, libxml, mbstring, zip, fileinfo
+          coverage: none
+
+      - name: "Lock Laravel contracts to ${{ matrix.laravel }}"
+        run: |
+          composer require "illuminate/contracts:${{ matrix.laravel }}" --no-interaction --no-update
+
+      - name: "Install dependencies (Composer)"
+        uses: ramsey/composer-install@v3
+        with:
+          dependency-versions: "highest"
+
+      - name: Execute tests
+        run: vendor/bin/phpunit --testdox --display-skipped --display-incomplete --display-warnings
