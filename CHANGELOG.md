@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.22.0...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.25.2...main)
+
+## 1.25.2 - (2025-12-18)
+### Added
+- Added 1 new icon(s): `stone`
+
+### Updates
+- Update Lucide to `v0.562.0`
+
 
 ## 1.23.0 - (2024-07-22)
 ### Updates
