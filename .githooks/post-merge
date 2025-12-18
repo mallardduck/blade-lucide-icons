@@ -1,0 +1,6 @@
+#!/bin/sh
+# Git hook to automatically update submodules after merge/pull
+# This ensures the lucide submodule stays in sync after pulling changes
+
+echo "Syncing submodules..."
+git submodule update --init --recursive

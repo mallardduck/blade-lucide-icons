@@ -1,0 +1,14 @@
+#!/bin/sh
+# Git hook to automatically update submodules after checkout
+# This ensures the lucide submodule stays in sync when switching branches
+
+# Read the hook parameters
+prev_head=$1
+new_head=$2
+branch_checkout=$3
+
+# Only run on branch checkouts (not file checkouts)
+if [ "$branch_checkout" = "1" ]; then
+    echo "Syncing submodules..."
+    git submodule update --init --recursive
+fi
