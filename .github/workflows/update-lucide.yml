@@ -96,7 +96,13 @@ jobs:
 
           # Run detection script
           CHANGES_JSON=$(php bin/detect-icon-changes.php)
-          echo "changes=${CHANGES_JSON}" >> "$GITHUB_OUTPUT"
+
+          # Use multiline output for JSON
+          {
+            echo "changes<<EOF"
+            echo "${CHANGES_JSON}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
           # Extract bump type
           BUMP_TYPE=$(echo "${CHANGES_JSON}" | jq -r '.bump_type')
