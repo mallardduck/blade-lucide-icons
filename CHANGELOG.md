@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.0...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.1...main)
+
+## 1.26.1 - (2026-01-24)
+### Added
+- Added 1 new icon(s): `toolbox`
+
+### Changed
+- Modified 1 icon(s)
+
+### Updates
+- Update Lucide to `v0.563.1`
+
 
 ## 1.26.0 - (2025-12-18)
 ### Added
