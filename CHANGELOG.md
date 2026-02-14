@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.1...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.2...main)
+
+## 1.26.2 - (2026-02-14)
+### Added
+- Added 2 new icon(s): `globe-x`, `printer-x`
+
+### Changed
+- Modified 13 icon(s)
+
+### Updates
+- Update Lucide to `v0.564.0`
+
 
 ## 1.26.1 - (2026-01-24)
 ### Added
