@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.2...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.3...main)
+
+## 1.26.3 - (2026-02-17)
+### Added
+- Added 3 new icon(s): `database-search`, `user-key`, `user-round-key`
+
+### Changed
+- Modified 13 icon(s)
+
+### Updates
+- Update Lucide to `v0.565.0`
+
 
 ## 1.26.2 - (2026-02-14)
 ### Added
