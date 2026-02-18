@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.3...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.4...main)
+
+## 1.26.4 - (2026-02-18)
+### Added
+- Added 2 new icon(s): `lens-concave`, `lens-convex`
+
+### Updates
+- Update Lucide to `v0.574.0`
+
 
 ## 1.26.3 - (2026-02-17)
 ### Added
