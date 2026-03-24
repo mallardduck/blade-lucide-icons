@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.8...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.9...main)
+
+## 1.26.9 - (2026-03-24)
+### Added
+- Added 1 new icon(s): `ellipse`
+
+### Updates
+- Update Lucide to `v1.0.2`
+
 
 ## 1.26.8 - (2026-03-05)
 ### Added
