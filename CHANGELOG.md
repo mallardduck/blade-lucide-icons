@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.9...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.10...main)
+
+## 1.26.10 - (2026-03-25)
+### Added
+- Added 1 new icon(s): `cctv-off`
+
+### Changed
+- Modified 2 icon(s)
+
+### Updates
+- Update Lucide to `v1.6.0`
+
 
 ## 1.26.9 - (2026-03-24)
 ### Added
