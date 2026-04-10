@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.11...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.12...main)
+
+## 1.26.12 - (2026-04-10)
+### Added
+- Added 1 new icon(s): `map-pin-search`
+
+### Updates
+- Update Lucide to `v1.8.0`
+
 
 ## 1.26.11 - (2026-03-26)
 ### Added
