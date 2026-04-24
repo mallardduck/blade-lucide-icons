@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.12...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.13...main)
+
+## 1.26.13 - (2026-04-24)
+### Added
+- Added 2 new icon(s): `bookmark-off`, `square-dashed-text`
+
+### Changed
+- Modified 1 icon(s)
+
+### Updates
+- Update Lucide to `v1.9.0`
+
 
 ## 1.26.12 - (2026-04-10)
 ### Added
