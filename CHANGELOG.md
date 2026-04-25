@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.13...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.14...main)
+
+## 1.26.14 - (2026-04-25)
+### Added
+- Added 1 new icon(s): `timeline`
+
+### Updates
+- Update Lucide to `v1.11.0`
+
 
 ## 1.26.13 - (2026-04-24)
 ### Added
