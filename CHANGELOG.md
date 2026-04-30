@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.18...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.19...main)
+
+## 1.26.19 - (2026-04-30)
+### Added
+- Added 2 new icon(s): `astroid`, `folder-bookmark`
+
+### Updates
+- Update Lucide to `v1.14.0`
+
 
 ## 1.26.18 - (2026-04-29)
 ### Added
