@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.19...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.20...main)
+
+## 1.26.20 - (2026-05-15)
+### Added
+- Added 3 new icon(s): `repeat-off`, `waves-horizontal`, `waves-vertical`
+
+### Updates
+- Update Lucide to `v1.16.0`
+
 
 ## 1.26.19 - (2026-04-30)
 ### Added
