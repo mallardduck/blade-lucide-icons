@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.22...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.23...main)
+
+## 1.26.23 - (2026-06-14)
+### Added
+- Added 2 new icon(s): `play-off`, `webcam-off`
+
+### Updates
+- Update Lucide to `v1.19.0`
+
 
 ## 1.26.22 - (2026-06-13)
 ### Added
