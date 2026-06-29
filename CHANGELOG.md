@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.25...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.26...main)
+
+## 1.26.26 - (2026-06-29)
+### Added
+- Added 1 new icon(s): `bone-fracture`
+
+### Updates
+- Update Lucide to `v1.22.0`
+
 
 ## 1.26.25 - (2026-06-19)
 ### Added
