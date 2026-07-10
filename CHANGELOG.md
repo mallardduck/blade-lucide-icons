@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.27...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.28...main)
+
+## 1.26.28 - (2026-07-10)
+### Added
+- Added 1 new icon(s): `paper-bag`
+
+### Updates
+- Update Lucide to `v1.24.0`
+
 
 ## 1.26.27 - (2026-07-02)
 ### Added
