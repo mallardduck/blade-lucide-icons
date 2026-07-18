@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.28...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.29...main)
+
+## 1.26.29 - (2026-07-18)
+### Added
+- Added 2 new icon(s): `circle-euro-sign`, `server-plus`
+
+### Changed
+- Modified 2 icon(s)
+
+### Updates
+- Update Lucide to `v1.25.0`
+
 
 ## 1.26.28 - (2026-07-10)
 ### Added
