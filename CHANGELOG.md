@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.29...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.30...main)
+
+## 1.26.30 - (2026-07-24)
+### Added
+- Added 2 new icon(s): `circle-euro`, `scan-box`
+
+### Changed
+- Modified 3 icon(s)
+
+### Updates
+- Update Lucide to `v1.26.0`
+
 
 ## 1.26.29 - (2026-07-18)
 ### Added
