@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.30...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/1.26.31...main)
+
+## 1.26.31 - (2026-07-26)
+### Added
+- Added 1 new icon(s): `shield-keyhole`
+
+### Changed
+- Modified 4 icon(s)
+
+### Updates
+- Update Lucide to `v1.27.0`
+
 
 ## 1.26.30 - (2026-07-24)
 ### Added
