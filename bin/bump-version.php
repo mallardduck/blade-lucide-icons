@@ -4,22 +4,24 @@
 /**
  * Bump version and update CHANGELOG.
  *
- * Usage: php bump-version.php <bump_type> <lucide_version> [changes_json]
+ * Usage: php bump-version.php <bump_type> <lucide_version> <lucide_lab_version> [changes_json]
  *
  * Arguments:
- *   bump_type: 'major', 'minor', or 'patch'
- *   lucide_version: The new Lucide version (e.g., "0.561.0")
- *   changes_json: Optional JSON string with icon changes
+ *   bump_type: 'major', 'minor', 'patch', or 'none'
+ *   lucide_version: The new Lucide core version (e.g., "1.28.0"), or "-" if unchanged
+ *   lucide_lab_version: The new Lucide lab version (e.g., "0.2.0"), or "-" if unchanged
+ *   changes_json: Optional JSON string with icon changes (from detect-icon-changes.php)
  */
 
-if ($argc < 3) {
-    fwrite(STDERR, "Usage: {$argv[0]} <bump_type> <lucide_version> [changes_json]\n");
+if ($argc < 4) {
+    fwrite(STDERR, "Usage: {$argv[0]} <bump_type> <lucide_version> <lucide_lab_version> [changes_json]\n");
     exit(1);
 }
 
 $bumpType = $argv[1];
 $lucideVersion = $argv[2];
-$changesJson = $argv[3] ?? null;
+$lucideLabVersion = $argv[3];
+$changesJson = $argv[4] ?? null;
 
 if (!in_array($bumpType, ['major', 'minor', 'patch', 'none'])) {
     fwrite(STDERR, "Invalid bump type: {$bumpType}\n");
@@ -87,33 +89,63 @@ if (!file_exists($changelogPath)) {
 
 $changelog = file_get_contents($changelogPath);
 
-// Build changelog entry
-$entry = "## {$newVersion} - ({$today})\n";
+/**
+ * Render the Added/Changed/Removed bullets for a single iconset bucket
+ * (e.g. "icon" or "lab icon"), appending to the given section buffers.
+ */
+function appendIconsetBullets(array &$sections, ?array $bucket, string $label): void
+{
+    if ($bucket === null || empty($bucket['changes'])) {
+        return;
+    }
 
-if ($changes && isset($changes['changes'])) {
-    $iconChanges = $changes['changes'];
+    $iconChanges = $bucket['changes'];
 
     if (!empty($iconChanges['removed'])) {
-        $entry .= "### Removed\n";
-        $entry .= "- Removed " . count($iconChanges['removed']) . " icon(s): "
-            . implode(', ', array_map(fn($i) => "`{$i}`", array_slice($iconChanges['removed'], 0, 10)))
-            . (count($iconChanges['removed']) > 10 ? ', ...' : '') . "\n\n";
+        $sections['Removed'][] = "- Removed " . count($iconChanges['removed']) . " {$label}(s): "
+            . implode(', ', array_map(fn ($i) => "`{$i}`", array_slice($iconChanges['removed'], 0, 10)))
+            . (count($iconChanges['removed']) > 10 ? ', ...' : '');
     }
 
     if (!empty($iconChanges['added'])) {
-        $entry .= "### Added\n";
-        $entry .= "- Added " . count($iconChanges['added']) . " new icon(s)"
-            . (count($iconChanges['added']) <= 5 ? ": " . implode(', ', array_map(fn($i) => "`{$i}`", $iconChanges['added'])) : '') . "\n\n";
+        $sections['Added'][] = "- Added " . count($iconChanges['added']) . " new {$label}(s)"
+            . (count($iconChanges['added']) <= 5 ? ": " . implode(', ', array_map(fn ($i) => "`{$i}`", $iconChanges['added'])) : '');
     }
 
     if (!empty($iconChanges['modified'])) {
-        $entry .= "### Changed\n";
-        $entry .= "- Modified " . count($iconChanges['modified']) . " icon(s)\n\n";
+        $sections['Changed'][] = "- Modified " . count($iconChanges['modified']) . " {$label}(s)";
     }
 }
 
-$entry .= "### Updates\n";
-$entry .= "- Update Lucide to `v{$lucideVersion}`\n";
+$sections = ['Removed' => [], 'Added' => [], 'Changed' => []];
+
+if ($changes) {
+    appendIconsetBullets($sections, $changes['icons'] ?? null, 'icon');
+    appendIconsetBullets($sections, $changes['lab'] ?? null, 'lab icon');
+}
+
+// Build changelog entry
+$entry = "## {$newVersion} - ({$today})\n";
+
+foreach (['Removed', 'Added', 'Changed'] as $heading) {
+    if (!empty($sections[$heading])) {
+        $entry .= "### {$heading}\n";
+        $entry .= implode("\n", $sections[$heading]) . "\n\n";
+    }
+}
+
+$updates = [];
+if ($lucideVersion !== '-') {
+    $updates[] = "- Update Lucide icons to `v{$lucideVersion}`";
+}
+if ($lucideLabVersion !== '-') {
+    $updates[] = "- Update Lucide lab icons to `v{$lucideLabVersion}`";
+}
+
+if (!empty($updates)) {
+    $entry .= "### Updates\n";
+    $entry .= implode("\n", $updates) . "\n";
+}
 
 // Insert new entry after "## [Unreleased]" section
 $unreleasedPattern = '/(## \[Unreleased\].*?\n)\n*/s';
