@@ -16,7 +16,7 @@ final class BladeLucideIconsServiceProvider extends ServiceProvider
 
         $this->callAfterResolving(Factory::class, function (Factory $factory, Container $container) {
             $config = $container->make('config')->get('blade-lucide-icons', []);
-            $factory->add('lucide', array_merge(['path' => __DIR__.'/../resources/svg'], $config));
+            $factory->add('lucide', array_merge(['path' => __DIR__.'/../resources/svg/icons'], $config));
 
             $labConfig = $container->make('config')->get('blade-lucide-lab-icons', []);
             $factory->add('lucide-lab', array_merge(['path' => __DIR__.'/../resources/svg/lab'], $labConfig));

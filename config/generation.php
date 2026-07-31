@@ -19,7 +19,7 @@ $svgNormalization = static function (string $tempFilepath, array $iconSet) {
 return [
     [
         'source' => __DIR__.'/../lucide/icons',
-        'destination' => __DIR__.'/../resources/svg',
+        'destination' => __DIR__.'/../resources/svg/icons',
         'after' => $svgNormalization,
         'safe' => true,
     ],
