@@ -12,8 +12,12 @@ jobs:
   check_versions:
     runs-on: ubuntu-latest
     outputs:
-      latest: ${{ steps.latest-version.outputs.LATEST_VERSION }}
-      up_to_date: ${{ steps.current-version.outputs.CURRENT_VERSION == steps.latest-version.outputs.LATEST_VERSION }}
+      target_tag: ${{ steps.decide.outputs.TARGET_TAG }}
+      resolved_core: ${{ steps.decide.outputs.RESOLVED_CORE }}
+      resolved_lab: ${{ steps.decide.outputs.RESOLVED_LAB }}
+      core_changed: ${{ steps.decide.outputs.CORE_CHANGED }}
+      lab_changed: ${{ steps.decide.outputs.LAB_CHANGED }}
+      up_to_date: ${{ steps.decide.outputs.UP_TO_DATE }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -21,32 +25,78 @@ jobs:
           fetch-depth: 0
           submodules: recursive
 
-      - name: Set current version
-        id: current-version
+      - name: Decide target tag
+        id: decide
         shell: bash
         run: |
           cd lucide
-          git fetch --tags --force --quiet
-          CURR_TAG="$(git describe --tags --abbrev=0)"
-          echo "CURRENT_VERSION=${CURR_TAG}" >> "$GITHUB_OUTPUT"
-          {
-            echo "### Current Lucide submodule"
-            echo ""
-            echo "- Tag: \`${CURR_TAG}\`"
-          } >> "$GITHUB_STEP_SUMMARY"
+          git fetch --all --tags --force --quiet
 
-      - name: Set latest version
-        id: latest-version
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          LATEST_TAG="$(gh release view -R lucide-icons/lucide --json tagName -q .tagName)"
-          echo "LATEST_VERSION=${LATEST_TAG}" >> "$GITHUB_OUTPUT"
+          # What's currently pinned, per release train. `git describe`
+          # exits non-zero (and this step runs under `bash -e`) if no tag of
+          # a given style is reachable yet - true today for the lab train,
+          # since the submodule was never pinned to a lab tag before this
+          # tooling existed. Treat "no reachable tag of this style" as an
+          # empty current version rather than failing the step.
+          CURRENT_CORE="$(git describe --tags --abbrev=0 --match '[0-9]*.[0-9]*.[0-9]*' 2>/dev/null || echo '')"
+          CURRENT_LAB="$(git describe --tags --abbrev=0 --match '@lucide/lab@*' 2>/dev/null || echo '')"
+
+          # Both tag styles are cut from the same upstream `main` branch, so
+          # rather than asking GitHub's API for "the latest release" (which
+          # can't disambiguate the two trains) and then reconciling that
+          # against ancestry, just ask git directly: of all tags reachable
+          # from origin/main matching either style, which is newest? That's
+          # the single tag to target - no separate per-style "latest" lookup
+          # or ancestor branching needed, and no GitHub API/token required.
+          TARGET_TAG="$(git for-each-ref --format='%(refname:short) %(creatordate:unix)' refs/tags --merged origin/main \
+            | grep -E '^(@lucide/lab@[0-9.]+|[0-9]+\.[0-9]+\.[0-9]+) ' \
+            | sort -k2 -n -r | head -1 | cut -d' ' -f1)"
+
+          if [ -z "${TARGET_TAG}" ]; then
+            echo "::error::No core or lab tag found reachable from origin/main." >&2
+            exit 1
+          fi
+
+          # Resolve the actual nearest tag per style *at the target commit*
+          # (without checking anything out) - since we jump straight to the
+          # newest tag of whichever style is further along, we may pass
+          # several intermediate tags of the other style, so we can't just
+          # assume TARGET_TAG's own style is the only one that moved.
+          RESOLVED_CORE="$(git describe --tags --abbrev=0 --match '[0-9]*.[0-9]*.[0-9]*' "${TARGET_TAG}" 2>/dev/null || echo '')"
+          RESOLVED_LAB="$(git describe --tags --abbrev=0 --match '@lucide/lab@*' "${TARGET_TAG}" 2>/dev/null || echo '')"
+
+          CORE_CHANGED="false"
+          LAB_CHANGED="false"
+          [ "${RESOLVED_CORE}" != "${CURRENT_CORE}" ] && CORE_CHANGED="true"
+          [ "${RESOLVED_LAB}" != "${CURRENT_LAB}" ] && LAB_CHANGED="true"
+
+          UP_TO_DATE="true"
+          [ "${CORE_CHANGED}" = "true" ] || [ "${LAB_CHANGED}" = "true" ] && UP_TO_DATE="false"
+
+          # Plain version numbers (no "v" prefix, no "@lucide/lab@" prefix)
+          # for use in CHANGELOG text and commit messages.
+          RESOLVED_CORE_VERSION="${RESOLVED_CORE#v}"
+          RESOLVED_LAB_VERSION="${RESOLVED_LAB##*@}"
+
           {
-            echo "### Upstream latest release"
+            echo "TARGET_TAG=${TARGET_TAG}"
+            echo "RESOLVED_CORE=${RESOLVED_CORE_VERSION}"
+            echo "RESOLVED_LAB=${RESOLVED_LAB_VERSION}"
+            echo "CORE_CHANGED=${CORE_CHANGED}"
+            echo "LAB_CHANGED=${LAB_CHANGED}"
+            echo "UP_TO_DATE=${UP_TO_DATE}"
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "### Lucide version check"
             echo ""
-            echo "- Tag: \`${LATEST_TAG}\`"
+            echo "| | Current | Latest resolved |"
+            echo "|---|---|---|"
+            echo "| Core | \`${CURRENT_CORE}\` | \`${RESOLVED_CORE}\` (changed: ${CORE_CHANGED}) |"
+            echo "| Lab | \`${CURRENT_LAB}\` | \`${RESOLVED_LAB}\` (changed: ${LAB_CHANGED}) |"
+            echo ""
+            echo "- Target tag: \`${TARGET_TAG}\`"
+            echo "- Up to date: \`${UP_TO_DATE}\`"
           } >> "$GITHUB_STEP_SUMMARY"
 
   update_icons:
@@ -73,12 +123,12 @@ jobs:
         shell: bash
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Update submodule to latest tag
+      - name: Update submodule to target tag
         shell: bash
         run: |
           cd lucide
           git fetch --all --tags --force --quiet
-          git checkout "${{ needs.check_versions.outputs.latest }}"
+          git checkout "${{ needs.check_versions.outputs.target_tag }}"
           cd ..
           # Stage the submodule pointer update
           git add lucide
@@ -120,14 +170,23 @@ jobs:
         if: steps.detect-changes.outputs.bump_type != 'none'
         shell: bash
         run: |
-          # Extract Lucide version (remove 'v' prefix if present)
-          LUCIDE_VERSION="${{ needs.check_versions.outputs.latest }}"
-          LUCIDE_VERSION="${LUCIDE_VERSION#v}"
+          # Only report a version for a train whose resolved tag actually
+          # changed this run; the other train passes "-" so bump-version.php
+          # omits it from the CHANGELOG's Updates section.
+          CORE_VERSION="-"
+          LAB_VERSION="-"
+          if [ "${{ needs.check_versions.outputs.core_changed }}" = "true" ]; then
+            CORE_VERSION="${{ needs.check_versions.outputs.resolved_core }}"
+          fi
+          if [ "${{ needs.check_versions.outputs.lab_changed }}" = "true" ]; then
+            LAB_VERSION="${{ needs.check_versions.outputs.resolved_lab }}"
+          fi
 
           # Run version bump script
           NEW_VERSION=$(php bin/bump-version.php \
             "${{ steps.detect-changes.outputs.bump_type }}" \
-            "${LUCIDE_VERSION}" \
+            "${CORE_VERSION}" \
+            "${LAB_VERSION}" \
             '${{ steps.detect-changes.outputs.changes }}')
 
           echo "new_version=${NEW_VERSION}" >> "$GITHUB_OUTPUT"
@@ -136,12 +195,36 @@ jobs:
           echo "- Type: \`${{ steps.detect-changes.outputs.bump_type }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- New version: \`${NEW_VERSION}\`" >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Build commit message
+        id: commit-message
+        if: steps.detect-changes.outputs.bump_type != 'none'
+        shell: bash
+        run: |
+          CORE_CHANGED="${{ needs.check_versions.outputs.core_changed }}"
+          LAB_CHANGED="${{ needs.check_versions.outputs.lab_changed }}"
+          CORE_VERSION="${{ needs.check_versions.outputs.resolved_core }}"
+          LAB_VERSION="${{ needs.check_versions.outputs.resolved_lab }}"
+
+          if [ "${CORE_CHANGED}" = "true" ] && [ "${LAB_CHANGED}" = "true" ]; then
+            MESSAGE="feat(icons): Update Lucide icons to ${CORE_VERSION} and lab icons to ${LAB_VERSION}"
+          elif [ "${CORE_CHANGED}" = "true" ]; then
+            MESSAGE="feat(icons): Update Lucide icons to ${CORE_VERSION}"
+          else
+            MESSAGE="feat(icons): Update Lucide lab icons to ${LAB_VERSION}"
+          fi
+
+          {
+            echo "message<<EOF"
+            echo "${MESSAGE}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Commit changes
         if: steps.detect-changes.outputs.bump_type != 'none'
         uses: EndBug/add-and-commit@v9
         with:
           add: .
-          message: "feat(icons): Update Lucide to ${{ needs.check_versions.outputs.latest }}"
+          message: ${{ steps.commit-message.outputs.message }}
           push: true
           tag: ${{ steps.bump-version.outputs.new_version }}
           tag_push: '--force'
@@ -152,41 +235,44 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          # Extract release notes from CHANGELOG
-          LUCIDE_VERSION="${{ needs.check_versions.outputs.latest }}"
-          LUCIDE_VERSION="${LUCIDE_VERSION#v}"
           NEW_VERSION="${{ steps.bump-version.outputs.new_version }}"
 
           # Create release notes
           cat > release_notes.md <<EOF
-          Updated Lucide icons to version ${LUCIDE_VERSION}.
+          ${{ steps.commit-message.outputs.message }}
 
           ## Changes
           EOF
 
-          # Parse changes from JSON
+          # Parse changes from JSON, per iconset
           CHANGES='${{ steps.detect-changes.outputs.changes }}'
-          ADDED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.added_count')
-          REMOVED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.removed_count')
-          MODIFIED_COUNT=$(echo "${CHANGES}" | jq -r '.summary.modified_count')
 
-          if [ "${REMOVED_COUNT}" -gt 0 ]; then
-            echo "" >> release_notes.md
-            echo "### ⚠️ Breaking Changes" >> release_notes.md
-            echo "- ${REMOVED_COUNT} icon(s) removed" >> release_notes.md
-          fi
+          for BUCKET in icons lab; do
+            LABEL="icon"
+            [ "${BUCKET}" = "lab" ] && LABEL="lab icon"
 
-          if [ "${ADDED_COUNT}" -gt 0 ]; then
-            echo "" >> release_notes.md
-            echo "### ✨ New Icons" >> release_notes.md
-            echo "- ${ADDED_COUNT} new icon(s) added" >> release_notes.md
-          fi
+            ADDED_COUNT=$(echo "${CHANGES}" | jq -r ".${BUCKET}.summary.added_count")
+            REMOVED_COUNT=$(echo "${CHANGES}" | jq -r ".${BUCKET}.summary.removed_count")
+            MODIFIED_COUNT=$(echo "${CHANGES}" | jq -r ".${BUCKET}.summary.modified_count")
 
-          if [ "${MODIFIED_COUNT}" -gt 0 ]; then
-            echo "" >> release_notes.md
-            echo "### 🔄 Modified Icons" >> release_notes.md
-            echo "- ${MODIFIED_COUNT} icon(s) updated" >> release_notes.md
-          fi
+            if [ "${REMOVED_COUNT}" -gt 0 ]; then
+              echo "" >> release_notes.md
+              echo "### ⚠️ Breaking Changes (${LABEL}s)" >> release_notes.md
+              echo "- ${REMOVED_COUNT} ${LABEL}(s) removed" >> release_notes.md
+            fi
+
+            if [ "${ADDED_COUNT}" -gt 0 ]; then
+              echo "" >> release_notes.md
+              echo "### ✨ New ${LABEL^}s" >> release_notes.md
+              echo "- ${ADDED_COUNT} new ${LABEL}(s) added" >> release_notes.md
+            fi
+
+            if [ "${MODIFIED_COUNT}" -gt 0 ]; then
+              echo "" >> release_notes.md
+              echo "### 🔄 Modified ${LABEL^}s" >> release_notes.md
+              echo "- ${MODIFIED_COUNT} ${LABEL}(s) updated" >> release_notes.md
+            fi
+          done
 
           # Create the release
           gh release create "${NEW_VERSION}" \
