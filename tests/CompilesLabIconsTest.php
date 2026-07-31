@@ -29,7 +29,7 @@ class CompilesLabIconsTest extends TestCase
     /** @test */
     public function it_can_add_styles_to_icons()
     {
-        $result = svg('lucide-lab.whale-narwhal', ['style' => 'color: #555'])->toHtml();
+        $result = svg('lucidelab-whale-narwhal', ['style' => 'color: #555'])->toHtml();
         $this->assertMatchesXmlSnapshot($result);
     }
 
