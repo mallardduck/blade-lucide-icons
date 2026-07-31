@@ -23,4 +23,10 @@ return [
         'after' => $svgNormalization,
         'safe' => true,
     ],
+    [
+        'source' => __DIR__.'/../lucide/lab',
+        'destination' => __DIR__.'/../resources/svg/lab',
+        'after' => $svgNormalization,
+        'safe' => true,
+    ],
 ];

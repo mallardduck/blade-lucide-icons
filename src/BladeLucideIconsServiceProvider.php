@@ -16,14 +16,17 @@ final class BladeLucideIconsServiceProvider extends ServiceProvider
 
         $this->callAfterResolving(Factory::class, function (Factory $factory, Container $container) {
             $config = $container->make('config')->get('blade-lucide-icons', []);
-
             $factory->add('lucide', array_merge(['path' => __DIR__.'/../resources/svg'], $config));
+
+            $labConfig = $container->make('config')->get('blade-lucide-lab-icons', []);
+            $factory->add('lucide-lab', array_merge(['path' => __DIR__.'/../resources/svg/lab'], $labConfig));
         });
     }
 
     private function registerConfig(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/blade-lucide-icons.php', 'blade-lucide-icons');
+        $this->mergeConfigFrom(__DIR__.'/../config/blade-lucide-lab-icons.php', 'blade-lucide-lab-icons');
     }
 
     public function boot(): void
@@ -35,6 +38,7 @@ final class BladeLucideIconsServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__.'/../config/blade-lucide-icons.php' => $this->app->configPath('blade-lucide-icons.php'),
+                __DIR__.'/../config/blade-lucide-lab-icons.php' => $this->app->configPath('blade-lucide-lab-icons.php'),
             ], 'blade-lucide-icons-config');
         }
     }
