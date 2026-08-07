@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.1...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.2...main)
+
+## 2.0.2 - (2026-08-07)
+### Changed
+- Modified 1998 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.29.0`
+
 
 ## 2.0.1 - (2026-07-31)
 ### Changed
