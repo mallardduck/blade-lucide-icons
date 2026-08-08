@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.2...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.3...main)
+
+## 2.0.3 - (2026-08-08)
+### Added
+- Added 4 new icon(s): `layer-arrow-down`, `layer-arrow-up`, `layers-arrow-down`, `layers-arrow-up`
+
+### Updates
+- Update Lucide icons to `v1.30.0`
+
 
 ## 2.0.2 - (2026-08-07)
 ### Changed
