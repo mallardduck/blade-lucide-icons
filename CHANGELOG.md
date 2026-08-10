@@ -2,7 +2,16 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.3...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.4...main)
+
+## 2.0.4 - (2026-08-10)
+### Added
+- Added 11 new icon(s)
+- Added 1 new lab icon(s): `chinese-character`
+
+### Updates
+- Update Lucide icons to `v1.31.0`
+
 
 ## 2.0.3 - (2026-08-08)
 ### Added
