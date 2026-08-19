@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.4...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.5...main)
+
+## 2.0.5 - (2026-08-19)
+### Added
+- Added 3 new icon(s): `angle`, `eject`, `mail-badge`
+
+### Updates
+- Update Lucide icons to `v1.32.0`
+
 
 ## 2.0.4 - (2026-08-10)
 ### Added
