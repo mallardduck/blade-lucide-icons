@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.7...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.8...main)
+
+## 2.0.8 - (2026-08-28)
+### Added
+- Added 1 new icon(s): `mail-clock`
+
+### Updates
+- Update Lucide icons to `v1.35.0`
+
 
 ## 2.0.7 - (2026-08-25)
 ### Added
