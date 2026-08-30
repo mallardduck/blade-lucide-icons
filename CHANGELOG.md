@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.8...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.9...main)
+
+## 2.0.9 - (2026-08-30)
+### Added
+- Added 4 new icon(s): `galaxy`, `robot-arm`, `ship-cargo`, `trailer`
+- Added 1 new lab icon(s): `bat`
+
+### Changed
+- Modified 2 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.36.0`
+
 
 ## 2.0.8 - (2026-08-28)
 ### Added
