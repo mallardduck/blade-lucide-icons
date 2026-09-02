@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.10...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.11...main)
+
+## 2.0.11 - (2026-09-02)
+### Added
+- Added 1 new icon(s): `vector-polygon`
+
+### Changed
+- Modified 1 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.39.0`
+
 
 ## 2.0.10 - (2026-09-01)
 ### Added
