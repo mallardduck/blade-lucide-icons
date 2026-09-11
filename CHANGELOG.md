@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.15...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.16...main)
+
+## 2.0.16 - (2026-09-11)
+### Added
+- Added 3 new icon(s): `carton-off`, `carton`, `tic-tac-toe`
+
+### Changed
+- Modified 2 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.44.0`
+- Update Lucide lab icons to `v0.7.0`
+
 
 ## 2.0.15 - (2026-09-09)
 ### Added
