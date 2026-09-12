@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.16...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.17...main)
+
+## 2.0.17 - (2026-09-12)
+### Added
+- Added 20 new icon(s)
+- Added 4 new lab icon(s): `check-x`, `hand-gear`, `monstera-leaf`, `peace-sign`
+
+### Changed
+- Modified 10 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.45.0`
+
 
 ## 2.0.16 - (2026-09-11)
 ### Added
