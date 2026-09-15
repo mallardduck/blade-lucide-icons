@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.17...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.18...main)
+
+## 2.0.18 - (2026-09-15)
+### Added
+- Added 1 new icon(s): `globe-code`
+
+### Updates
+- Update Lucide icons to `v1.46.0`
+
 
 ## 2.0.17 - (2026-09-12)
 ### Added
