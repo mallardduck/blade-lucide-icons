@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.18...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.19...main)
+
+## 2.0.19 - (2026-09-18)
+### Added
+- Added 4 new icon(s): `clef-alto`, `clef-bass`, `clef-treble`, `monitor-pc`
+
+### Updates
+- Update Lucide icons to `v1.47.0`
+
 
 ## 2.0.18 - (2026-09-15)
 ### Added
