@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.21...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.22...main)
+
+## 2.0.22 - (2026-10-03)
+### Added
+- Added 3 new icon(s): `bangladeshi-taka`, `letters`, `printer-3d`
+
+### Updates
+- Update Lucide icons to `v1.50.0`
+
 
 ## 2.0.21 - (2026-09-30)
 ### Added
