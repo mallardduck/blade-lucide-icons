@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.22...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.23...main)
+
+## 2.0.23 - (2026-10-04)
+### Added
+- Added 1 new icon(s): `layout-grid-circles`
+
+### Changed
+- Modified 2 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.51.0`
+
 
 ## 2.0.22 - (2026-10-03)
 ### Added
