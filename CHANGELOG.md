@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.25...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.26...main)
+
+## 2.0.26 - (2026-10-10)
+### Added
+- Added 3 new icon(s): `groceries`, `hiking-stick`, `scratch-blocks`
+
+### Changed
+- Modified 4 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.54.0`
+
 
 ## 2.0.25 - (2026-10-09)
 ### Changed
