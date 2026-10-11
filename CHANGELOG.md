@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.26...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.27...main)
+
+## 2.0.27 - (2026-10-11)
+### Added
+- Added 1 new icon(s): `lens`
+
+### Updates
+- Update Lucide icons to `v1.55.0`
+
 
 ## 2.0.26 - (2026-10-10)
 ### Added
