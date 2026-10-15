@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.28...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.29...main)
+
+## 2.0.29 - (2026-10-15)
+### Added
+- Added 2 new icon(s): `message-circle-text`, `server-nas`
+
+### Updates
+- Update Lucide icons to `v1.57.0`
+
 
 ## 2.0.28 - (2026-10-14)
 ### Added
