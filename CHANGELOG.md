@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.30...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.31...main)
+
+## 2.0.31 - (2026-10-18)
+### Added
+- Added 5 new icon(s): `certificate`, `eighth-note`, `eighth-notes`, `half-note`, `sixteenth-notes`
+
+### Changed
+- Modified 1 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.59.0`
+
 
 ## 2.0.30 - (2026-10-17)
 ### Added
