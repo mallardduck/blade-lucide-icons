@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.33...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.34...main)
+
+## 2.0.34 - (2026-10-28)
+### Added
+- Added 4 new icon(s): `circle-chevrons-down`, `circle-chevrons-left`, `circle-chevrons-right`, `circle-chevrons-up`
+
+### Updates
+- Update Lucide icons to `v1.62.0`
+
 
 ## 2.0.33 - (2026-10-22)
 ### Added
