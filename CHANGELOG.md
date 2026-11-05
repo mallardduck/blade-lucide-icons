@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.39...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.40...main)
+
+## 2.0.40 - (2026-11-05)
+### Added
+- Added 4 new icon(s): `diagram-flow-horizontal`, `diagram-flow-vertical`, `globe-ban`, `globe-plus`
+- Added 5 new lab icon(s): `circuit-resistor`, `cup-bubble-tea`, `flask-conical-titration`, `map-pin-laptop`, `soldering-iron`
+
+### Changed
+- Modified 3 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.68.0`
+
 
 ## 2.0.39 - (2026-11-04)
 ### Added
