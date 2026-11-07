@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.41...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.42...main)
+
+## 2.0.42 - (2026-11-07)
+### Added
+- Added 4 new icon(s): `circle-fading-check`, `opacity`, `package-pen`, `package-question-mark`
+
+### Updates
+- Update Lucide icons to `v1.70.0`
+
 
 ## 2.0.41 - (2026-11-06)
 ### Added
