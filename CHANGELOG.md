@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.42...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.43...main)
+
+## 2.0.43 - (2026-11-11)
+### Added
+- Added 5 new icon(s): `grid-3x3-off`, `moped`, `square-dashed-search`, `user-exclamation-point`, `user-round-exclamation-point`
+
+### Updates
+- Update Lucide icons to `v1.71.0`
+
 
 ## 2.0.42 - (2026-11-07)
 ### Added
