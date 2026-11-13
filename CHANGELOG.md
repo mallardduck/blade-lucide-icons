@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.44...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.45...main)
+
+## 2.0.45 - (2026-11-13)
+### Added
+- Added 6 new icon(s)
+
+### Changed
+- Modified 9 icon(s)
+
+### Updates
+- Update Lucide lab icons to `v0.13.0`
+
 
 ## 2.0.44 - (2026-11-12)
 ### Added
