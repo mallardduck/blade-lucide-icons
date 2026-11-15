@@ -2,7 +2,15 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.45...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.46...main)
+
+## 2.0.46 - (2026-11-15)
+### Added
+- Added 1 new lab icon(s): `trap`
+
+### Updates
+- Update Lucide icons to `v1.73.0`
+
 
 ## 2.0.45 - (2026-11-13)
 ### Added
