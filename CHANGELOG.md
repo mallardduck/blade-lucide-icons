@@ -2,7 +2,16 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.46...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.47...main)
+
+## 2.0.47 - (2026-11-17)
+### Added
+- Added 3 new icon(s): `cap`, `graph-ring`, `layout-grid-plus`
+
+### Updates
+- Update Lucide icons to `v1.74.0`
+- Update Lucide lab icons to `v0.14.0`
+
 
 ## 2.0.46 - (2026-11-15)
 ### Added
