@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.47...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.48...main)
+
+## 2.0.48 - (2026-11-19)
+### Added
+- Added 42 new icon(s)
+- Added 1 new lab icon(s): `airplane-small`
+
+### Changed
+- Modified 1 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.75.0`
+
 
 ## 2.0.47 - (2026-11-17)
 ### Added
