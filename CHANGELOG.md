@@ -2,7 +2,20 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.48...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.49...main)
+
+## 2.0.49 - (2026-11-20)
+### Added
+- Added 2 new icon(s): `jacket`, `paint-gun`
+
+### Changed
+- Modified 1 icon(s)
+- Modified 1 lab icon(s)
+
+### Updates
+- Update Lucide icons to `v1.76.0`
+- Update Lucide lab icons to `v0.17.0`
+
 
 ## 2.0.48 - (2026-11-19)
 ### Added
