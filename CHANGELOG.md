@@ -2,7 +2,19 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.49...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.50...main)
+
+## 2.0.50 - (2026-11-24)
+### Added
+- Added 7 new icon(s)
+- Added 3 new lab icon(s): `floorball`, `golf-ball`, `shuttlecock`
+
+### Changed
+- Modified 5 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.79.0`
+
 
 ## 2.0.49 - (2026-11-20)
 ### Added
