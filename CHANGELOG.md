@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.52...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.53...main)
+
+## 2.0.53 - (2026-11-27)
+### Added
+- Added 5 new icon(s): `bowl-chopsticks`, `elevator`, `globe-clock`, `rectangle-horizontal-play`, `steering-wheel`
+
+### Changed
+- Modified 11 icon(s)
+
+### Updates
+- Update Lucide icons to `v1.82.0`
+
 
 ## 2.0.52 - (2026-11-26)
 ### Added
