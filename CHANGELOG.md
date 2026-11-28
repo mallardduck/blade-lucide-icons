@@ -2,7 +2,18 @@
 
 This changelog follows [the Keep a Changelog standard](https://keepachangelog.com).
 
-## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.53...main)
+## [Unreleased](https://github.com/mallardduck/blade-lucide-icons/compare/2.0.54...main)
+
+## 2.0.54 - (2026-11-28)
+### Added
+- Added 1 new icon(s): `braces-sigma`
+
+### Changed
+- Modified 24 icon(s)
+
+### Updates
+- Update Lucide lab icons to `v0.18.0`
+
 
 ## 2.0.53 - (2026-11-27)
 ### Added
